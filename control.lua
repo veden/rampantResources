@@ -8,15 +8,13 @@ local CHUNK_SIZE = 32
 
 -- imported functions
 
--- local strFind = string.find
--- local substr = string.sub
 local mLog10 = math.log10
 local mRandom = math.random
 local mSqrt = math.sqrt
 
 -- local references
 
--- local world
+local world
 local pendingChunks
 local queries
 
