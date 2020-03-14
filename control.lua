@@ -58,6 +58,26 @@ local function onModSettingsChange(event)
     -- world.spoutScaler = settings.global["rampant-arsenal-spoutScaler"].value
     -- world.spoutDefaultValue = world.spoutScaler * DEFAULT_SPOUT_SIZE
 
+    for _,surface in pairs(game.surfaces) do
+        if surface.valid then
+            local entities = surface.find_entities_filtered(queries.getResources)
+            for i=1,#entities do
+                local entity = entities[i]
+                if entity.valid then
+                    local normal = entity.prototype.normal_resource_amount
+                    local minimum = entity.prototype.minimum_resource_amount
+                    if (normal == world.resourceNormal) and (minimum == world.resourceMinimum) then
+                        entity.amount = gaussianRandomRange(world.resourceNormal,
+                                                            world.resourceStdDev,
+                                                            world.resourceMinimum,
+                                                            world.resourceMaximum)
+                        entity.initial_amount = entity.amount
+                    end
+                end
+            end
+        end
+    end
+
     return true
 end
 
@@ -74,26 +94,6 @@ local function onConfigChanged()
         queries.area = {{0,0},{0,0}}
         queries.getResourcesArea = { area=queries.area, type="resource" }
         queries.getResources = { type="resource" }
-
-        for _,surface in pairs(game.surfaces) do
-            if surface.valid then
-                local entities = surface.find_entities_filtered(queries.getResources)
-                for i=1,#entities do
-                    local entity = entities[i]
-                    if entity.valid then
-                        local normal = entity.prototype.normal_resource_amount
-                        local minimum = entity.prototype.minimum_resource_amount
-                        if (normal == world.resourceNormal) and (minimum == world.resourceMinimum) then
-                            entity.amount = gaussianRandomRange(world.resourceNormal,
-                                                                world.resourceStdDev,
-                                                                world.resourceMinimum,
-                                                                world.resourceMaximum)
-                            entity.initial_amount = entity.amount
-                        end
-                    end
-                end
-            end
-        end
 
         for i,p in ipairs(game.connected_players) do
             p.print("Rampant Resources - Version 0.18.1")
