@@ -1,0 +1,10 @@
+{
+    "name" : "RampantResources",
+    "factorio_version" : "0.18",
+    "version" : "0.18.1",
+    "title" : "Rampant Resources",
+    "author" : "Veden",
+    "homepage" : "",
+    "description" : "Changes any non-infinite resource into an infinite resource with reasonable yields and depletion",
+    "dependencies" : ["base >= 0.18.3"]
+}
