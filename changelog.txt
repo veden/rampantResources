@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.18.0
+Version: 0.18.1
 Date: 13. 2. 2020
   Features:
-    - Replenishing resources
+    - Changes any non-infinite resource into an infinite resource with reasonable yields and depletion
