@@ -88,7 +88,6 @@ local function onChunkGenerated(event)
 end
 
 local function onConfigChanged()
-    onModSettingsChange()
     if not world.version or world.version < 2 then
 
         queries.area = {{0,0},{0,0}}
@@ -100,6 +99,7 @@ local function onConfigChanged()
         end
         world.version = 2
     end
+    onModSettingsChange()
 end
 
 local function onTick(event)
