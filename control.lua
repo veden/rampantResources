@@ -51,8 +51,8 @@ local function onModSettingsChange(event)
 
     world.resourceNormal = settings.startup["rampant-resources-infiniteResourceNormal"].value
     world.resourceMinimum = math.floor(settings.startup["rampant-resources-infiniteResourceMinimum"].value * world.resourceNormal)
-    world.resourceMaximum = math.floor(world.resourceNormal * 1.4)
-    world.resourceStdDev = world.resourceNormal * 0.17
+    world.resourceMaximum = math.floor(world.resourceNormal * settings.startup["rampant-resources-infiniteResourceMaximum"].value)
+    world.resourceStdDev = world.resourceNormal * settings.startup["rampant-resources-infiniteResourceStdDev"].value
 
     -- world.spoutThreshold = settings.global["rampant-arsenal-spoutThreshold"].value
     -- world.spoutScaler = settings.global["rampant-arsenal-spoutScaler"].value

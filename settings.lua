@@ -33,6 +33,28 @@ data:extend({
             per_user = false
         },
 
+        {
+            type = "double-setting",
+            name = "rampant-resources-infiniteResourceStdDev",
+            setting_type = "startup",
+            minimum_value = 0,
+            maximum_value = 3,
+            default_value = 0.17,
+            order = "l[modifier]-n[unit]",
+            per_user = false
+        },
+
+        {
+            type = "double-setting",
+            name = "rampant-resources-infiniteResourceMaximum",
+            setting_type = "startup",
+            minimum_value = 0,
+            maximum_value = 100,
+            default_value = 1.4,
+            order = "l[modifier]-n[unit]",
+            per_user = false
+        },
+
         -- {
         --     type = "bool-setting",
         --     name = "rampant-attackWaveGenerationUsePlayerProximity",
