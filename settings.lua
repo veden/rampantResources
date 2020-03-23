@@ -53,15 +53,5 @@ data:extend({
             default_value = 1.4,
             order = "l[modifier]-n[unit]",
             per_user = false
-        },
-
-        -- {
-        --     type = "bool-setting",
-        --     name = "rampant-attackWaveGenerationUsePlayerProximity",
-        --     setting_type = "runtime-global",
-        --     default_value = true,
-        --     order = "b[modifier]-b[trigger]",
-        --     per_user = false
-
-        -- }
+        }
 })
