@@ -5,6 +5,6 @@
     "title" : "Rampant Resources",
     "author" : "Veden",
     "homepage" : "",
-    "description" : "Changes any non-infinite resource into an infinite resource with configurable with a global yield and depletion.",
+    "description" : "Changes any non-infinite resource into an infinite resource with configurable global yield and depletion.",
     "dependencies" : ["base >= 0.18.15"]
 }
