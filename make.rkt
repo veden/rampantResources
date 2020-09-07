@@ -88,7 +88,7 @@
     (set! packageName (string-append (string-replace (hash-ref configuration 'name) " " "_")
                                      "_"
                                      (hash-ref configuration 'version)))
-
+    (print (string-append "copying " (hash-ref configuration 'name) (hash-ref configuration 'version)))
     (copyFiles modFolder))
 
   (define (zipIt)
@@ -98,7 +98,7 @@
     (set! packageName (string-append (string-replace (hash-ref configuration 'name) " " "_")
                                      "_"
                                      (hash-ref configuration 'version)))
-
+    (print (string-append "zipping " (hash-ref configuration 'name) (hash-ref configuration 'version)))
     (makeZip modFolder))
 
   (define (runStart)
