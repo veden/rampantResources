@@ -94,7 +94,7 @@ local function onConfigChanged()
         queries.getResourcesArea = { area=queries.area, type="resource" }
         queries.getResources = { type="resource" }
 
-        for i,p in ipairs(game.connected_players) do
+        for _,p in ipairs(game.connected_players) do
             p.print("Rampant Resources - Version 0.18.1")
         end
         world.version = 2
@@ -102,7 +102,7 @@ local function onConfigChanged()
     onModSettingsChange()
 end
 
-local function onTick(event)
+local function onTick()
     if (#pendingChunks > 0) then
         local getResourcesArea = queries.getResourcesArea
         local area = queries.area
@@ -126,7 +126,7 @@ local function onTick(event)
 
             if surface.valid then
                 local entities = surface.find_entities_filtered(getResourcesArea)
-                for i=1,#entities do
+                for _=1,#entities do
                     local entity = entities[i]
                     if entity.valid then
                         local normal = entity.prototype.normal_resource_amount
@@ -165,7 +165,7 @@ end
 
 -- hooks
 
-script.on_nth_tick(10, onTick)
+script.on_nth_tick(5, onTick)
 -- script.on_event(defines.events.on_tick, onTick)
 script.on_init(onInit)
 script.on_load(onLoad)
