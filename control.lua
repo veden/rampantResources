@@ -94,12 +94,13 @@ local function onConfigChanged()
         queries.getResourcesArea = { area=queries.area, type="resource" }
         queries.getResources = { type="resource" }
 
+        onModSettingsChange()
+
         for _,p in ipairs(game.connected_players) do
             p.print("Rampant Resources - Version 0.18.1")
         end
         world.version = 2
     end
-    onModSettingsChange()
 end
 
 local function onTick()
