@@ -166,8 +166,8 @@ end
 
 -- hooks
 
-script.on_nth_tick(5, onTick)
--- script.on_event(defines.events.on_tick, onTick)
+-- script.on_nth_tick(5, onTick)
+script.on_event(defines.events.on_tick, onTick)
 script.on_init(onInit)
 script.on_load(onLoad)
 script.on_event(defines.events.on_runtime_mod_setting_changed, onModSettingsChange)
