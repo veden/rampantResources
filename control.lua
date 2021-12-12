@@ -45,33 +45,57 @@ end
 
 local function onModSettingsChange(event)
 
-    if event and (string.sub(event.setting, 1, 17) ~= "rampant-resources") then
+    if event and (string.sub(event.setting, 1, #"rampant-resources") ~= "rampant-resources") then
         return false
     end
 
+    local didChange = false
+    local value
+
+    value = world.resourceNormal
     world.resourceNormal = settings.startup["rampant-resources-infiniteResourceNormal"].value
+    if value ~= world.resourceNormal then
+        didChange = true
+    end
+
+    value = world.resourceMinimum
     world.resourceMinimum = math.floor(settings.startup["rampant-resources-infiniteResourceMinimum"].value * world.resourceNormal)
+    if value ~= world.resourceMinimum then
+        didChange = true
+    end
+
+    value = world.resourceMaximum
     world.resourceMaximum = math.floor(world.resourceNormal * settings.startup["rampant-resources-infiniteResourceMaximum"].value)
+    if value ~= world.resourceMaximum then
+        didChange = true
+    end
+
+    value = world.resourceStdDev
     world.resourceStdDev = world.resourceNormal * settings.startup["rampant-resources-infiniteResourceStdDev"].value
+    if value ~= world.resourceStdDev then
+        didChange = true
+    end
 
     -- world.spoutThreshold = settings.global["rampant-arsenal-spoutThreshold"].value
     -- world.spoutScaler = settings.global["rampant-arsenal-spoutScaler"].value
     -- world.spoutDefaultValue = world.spoutScaler * DEFAULT_SPOUT_SIZE
 
-    for _,surface in pairs(game.surfaces) do
-        if surface.valid then
-            local entities = surface.find_entities_filtered(queries.getResources)
-            for i=1,#entities do
-                local entity = entities[i]
-                if entity.valid then
-                    local normal = entity.prototype.normal_resource_amount
-                    local minimum = entity.prototype.minimum_resource_amount
-                    if (normal == world.resourceNormal) and (minimum == world.resourceMinimum) then
-                        entity.amount = gaussianRandomRange(world.resourceNormal,
-                                                            world.resourceStdDev,
-                                                            world.resourceMinimum,
-                                                            world.resourceMaximum)
-                        entity.initial_amount = entity.amount
+    if didChange then
+        for _,surface in pairs(game.surfaces) do
+            if surface.valid then
+                local entities = surface.find_entities_filtered(queries.getResources)
+                for i=1,#entities do
+                    local entity = entities[i]
+                    if entity.valid then
+                        local normal = entity.prototype.normal_resource_amount
+                        local minimum = entity.prototype.minimum_resource_amount
+                        if (normal == world.resourceNormal) and (minimum == world.resourceMinimum) then
+                            entity.amount = gaussianRandomRange(world.resourceNormal,
+                                                                world.resourceStdDev,
+                                                                world.resourceMinimum,
+                                                                world.resourceMaximum)
+                            entity.initial_amount = entity.amount
+                        end
                     end
                 end
             end
@@ -96,10 +120,13 @@ local function onConfigChanged()
 
         onModSettingsChange()
 
-        for _,p in ipairs(game.connected_players) do
-            p.print("Rampant Resources - Version 0.18.1")
-        end
         world.version = 2
+    end
+    if world.version < 3 then
+        world.version = 3
+        for _,p in ipairs(game.connected_players) do
+            p.print("Rampant Resources - Version 1.1.0")
+        end
     end
 end
 
@@ -166,7 +193,6 @@ end
 
 -- hooks
 
--- script.on_nth_tick(5, onTick)
 script.on_event(defines.events.on_tick, onTick)
 script.on_init(onInit)
 script.on_load(onLoad)

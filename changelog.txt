@@ -1,6 +1,8 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.3
+Version: 1.1.0
 Date: 11. 2. 2021
+  Improvements:
+    - Mod settings are now checked against existing values for if to reprocessing surfaces
   Tweaks:
     - Processing happens on every tick now as opposed to every 5th tick
 
