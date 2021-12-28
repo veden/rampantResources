@@ -3,8 +3,8 @@ local function linearInterpolation(percent, min, max)
 end
 
 
-for _,resource in pairs(data.raw.resource) do
-    if not resource.infinite then
+for name,resource in pairs(data.raw.resource) do
+    if not resource.infinite and not resource.exclude_from_rampant_resources then
         resource.infinite = true
 
         resource.normal = settings.startup["rampant-resources-infiniteResourceNormal"].value

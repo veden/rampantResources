@@ -156,7 +156,7 @@ local function onTick()
                 local entities = surface.find_entities_filtered(getResourcesArea)
                 for entityIndex=1,#entities do
                     local entity = entities[entityIndex]
-                    if entity.valid then
+                    if entity.valid and entity.prototype.infinite_resource then
                         local normal = entity.prototype.normal_resource_amount
                         local minimum = entity.prototype.minimum_resource_amount
                         if (normal == world.resourceNormal) and (minimum == world.resourceMinimum) then

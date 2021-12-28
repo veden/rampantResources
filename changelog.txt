@@ -1,4 +1,10 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 27. 12. 2021
+  Improvements:
+    - Added check for mods adding `.exclude_from_rampant_resources` to resources that should be excluded from being infinite. (For Modders)
+
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 11. 2. 2021
   Improvements:
