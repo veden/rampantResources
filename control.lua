@@ -125,7 +125,7 @@ local function onConfigChanged()
     if world.version < 3 then
         world.version = 3
         for _,p in ipairs(game.connected_players) do
-            p.print("Rampant Resources - Version 1.1.0")
+            p.print("Rampant Resources - Version 1.2.0")
         end
     end
 end
